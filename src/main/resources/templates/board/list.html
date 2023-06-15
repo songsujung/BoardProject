@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+</head>
+<body>
+	
+	<div layout:fragment="content">
+
+		<!--/* [[${board}]] */-->
+		<!--/* thymeleaf로 사용할 땐 el태그, 그 외엔 [[${}]] 형식 사용*/-->
+		<!-- Table Start -->
+		<div class="container-fluid pt-4 px-4">
+			<div class="row g-4">
+					<div class="col-sm-12 col-xl-12">
+							<div class="bg-light rounded h-100 p-4">
+									<h6 class="mb-4">Basic Table</h6>
+									<table class="table">
+											<thead>
+													<tr>
+															<th scope="col">bno</th>
+															<th scope="col">Title</th>
+															<th scope="col">Writer</th>
+															<th scope="col">Date</th>
+													</tr>
+											</thead>
+											<tbody class="readView">
+													<tr th:each="blist : ${board}" th:data-bno=${blist.bno}>
+															<td>[[${blist.bno}]]</td>
+															<td th:text="${blist.title}"></td>
+															<td>[[${blist.writer}]]</td>
+															<td>[[${blist.dueDate}]]</td>
+													</tr>
+											</tbody>
+									</table>
+									<div class="button_wrap">
+										<div class="btn-group me-2" role="group" aria-label="First group">
+											<button type="button" class="btn btn-primary"><</button>
+											<button type="button" class="btn btn-primary">1</button>
+											<button type="button" class="btn btn-primary">2</button>
+											<button type="button" class="btn btn-primary">3</button>
+											<button type="button" class="btn btn-primary">></button>
+										</div>
+									</div>
+							</div>
+					</div>
+			</div>
+		</div>
+		<!-- Table End -->
+	</div>
+
+
+	<script layout:fragment="script" th:inlint="javascript">
+
+		const readView = document.querySelector(".readView");
+		
+		readView.addEventListener("click", e => {
+
+			const target = e.target;
+			const bno = target.closest("tr").getAttribute("data-bno");
+			// console.log(target)
+
+			window.location.href = "/board/read/" + bno;
+
+		}, false)
+
+	</script>
+
+	
+
+</body>
+</html>

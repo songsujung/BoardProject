@@ -1,0 +1,21 @@
+package org.zerock.board.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class BoardDTO {
+	
+	private int bno;						// no pk
+	private String title;				// 제목
+	private String content;			// 내용
+	private String writer;			// 작성자	
+	private String dueDate;			// 등록일자
+	private String updateDate;	// 수정일자
+
+}
